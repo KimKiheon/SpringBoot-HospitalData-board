@@ -1,5 +1,6 @@
 package com.mustache.bbs.domain.dto;
 
+import com.mustache.bbs.domain.entity.Article;
 import lombok.Getter;
 
 @Getter
@@ -19,5 +20,8 @@ public class ArticleDTO {
                 "title ='" + title + '\'' +
                 ", content = '" + content + '\'' +
                 '}';
+    }
+    public Article toEntity(){
+        return new Article(title,content);
     }
 }
