@@ -2,6 +2,7 @@ package com.mustache.bbs.controller;
 
 import com.mustache.bbs.domain.dto.ArticleDTO;
 import com.mustache.bbs.domain.entity.Article;
+import com.mustache.bbs.domain.repository.ArticleRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -12,6 +13,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Slf4j
 @RequestMapping("/articles")
 public class ArticleController {
+    private final ArticleRepository articleRepository;
+    public ArticleController(ArticleRepository articleRepository) {
+        this.articleRepository = articleRepository;
+    }
+
     @GetMapping("")
     public String home() {
         return "index";
