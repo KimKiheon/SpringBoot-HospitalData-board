@@ -9,7 +9,7 @@ public class MustacheController {
 
     @GetMapping(value = "/hi")
     public String mustacheCon(Model model) {
-        model.addAttribute("username", "하이하이");
+        model.addAttribute("username", "Hello");
         return "greetings";
     }
 }
