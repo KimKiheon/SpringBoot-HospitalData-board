@@ -25,21 +25,27 @@ public class ArticleController {
     public String createPage() {
         return "articles/new";
     }
-
+    @GetMapping("")
+    public String index() {
+        return "redirect:/articles/list";
+    }
     @GetMapping("/{id}")
-    public String selectSingle(@PathVariable Long id, Model model) {
+    public String selectArticle(@PathVariable Long id, Model model) {
         Optional<Article> optArticle = articleRepository.findById(id);
         if (optArticle.isEmpty()) return "articles/error";
         //Optinal.get() -> Article
         model.addAttribute("article", optArticle.get());
         return "articles/show";
     }
+    @PostMapping("/posts")
+    public String createArticle(ArticleDTO form) {
+        log.info(form.toString());      // 로그 남기기
+        Article article = form.toEntity();
 
-    /*@PostMapping("")//articles
-    public String articles(ArticleDTO articleDTO) {
-        Article savedArticle = articleRepository.save(articleDTO.toEntity());
-        return String.format("redirect:/articles/%d", savedArticle.getId());
-    }*/
+        articleRepository.save(article);
+        return "redirect:/articles/"+article.getId();
+    }
+
 
     @GetMapping("/list")
     public String list(Model model) {
@@ -59,16 +65,12 @@ public class ArticleController {
         return "articles/edit";
     }
 
-    @RequestMapping(value = "/{id}/update", method = RequestMethod.PUT)
+
+    @PutMapping("/{id}/update")
     public String update(@PathVariable Long id, ArticleDTO articleDTO, Model model) {
         Article article = articleRepository.save(articleDTO.toEntity());
+        System.out.println("id="+id+"savedArticle.getId()="+article.getId());
         model.addAttribute("article", article);
         return String.format("redirect:/articles/%d", article.getId());
     }
-
-    @GetMapping("")
-    public String index() {
-        return "redirect:/articles/list";
-    }
-
 }

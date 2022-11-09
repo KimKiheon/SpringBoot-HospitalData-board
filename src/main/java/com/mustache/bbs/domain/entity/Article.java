@@ -7,13 +7,13 @@ import lombok.NoArgsConstructor;
 import javax.persistence.*;
 
 @Entity
-@Getter
 @Table(name = "article")
 @NoArgsConstructor
 @AllArgsConstructor
+@Getter
 public class Article {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue
     private Long id;
     private String title;
     private String content;
