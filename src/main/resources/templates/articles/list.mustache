@@ -1,0 +1,16 @@
+<HTML>
+<head></head>
+<body>
+<div>
+    List Page</br></br>
+    {{#articles}}
+        <tr>
+            <td>{{id}}</td>
+            <td><a href="/articles/{{id}}"> {{title}}</a></td>
+            <td>{{content}}</td>
+            <br>
+        </tr>
+    {{/articles}}
+</div>
+</body>
+</HTML>
