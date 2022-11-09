@@ -21,31 +21,29 @@ public class ArticleController {
         this.articleRepository = articleRepository;
     }
 
-    @GetMapping("/new")
-    public String createPage() {
+    @GetMapping(value = "/new")
+    public String newArticleForm() {
         return "articles/new";
     }
+
     @GetMapping("")
     public String index() {
         return "redirect:/articles/list";
     }
-    @GetMapping("/{id}")
-    public String selectArticle(@PathVariable Long id, Model model) {
+
+    //findById
+    @GetMapping(value = "/{id}")
+    public String selectSingle(@PathVariable Long id, Model model) {
         Optional<Article> optArticle = articleRepository.findById(id);
-        if (optArticle.isEmpty()) return "articles/error";
-        //Optinal.get() -> Article
-        model.addAttribute("article", optArticle.get());
-        return "articles/show";
-    }
-    @PostMapping("/posts")
-    public String createArticle(ArticleDTO form) {
-        log.info(form.toString());      // 로그 남기기
-        Article article = form.toEntity();
 
-        articleRepository.save(article);
-        return "redirect:/articles/"+article.getId();
-    }
+        if (!optArticle.isEmpty()) {
+            model.addAttribute("article", optArticle.get());
+            return "articles/show";
+        } else {
+            return "articles/error";
+        }
 
+    }
 
     @GetMapping("/list")
     public String list(Model model) {
@@ -54,7 +52,7 @@ public class ArticleController {
         return "articles/list";
     }
 
-    @GetMapping("/{id}/edit")
+    @GetMapping(value = "/{id}/edit")
     public String edit(@PathVariable Long id, Model model) {
         Optional<Article> optionalArticle = articleRepository.findById(id);
         if (optionalArticle.isEmpty()) {
@@ -65,11 +63,16 @@ public class ArticleController {
         return "articles/edit";
     }
 
+    @PostMapping("/posts")
+    public String createArticle(ArticleDTO form) {
+        log.info(form.toString());      // 로그 남기기
+        Article savedArticle = articleRepository.save(form.toEntity());
+        return "redirect:/articles/" + savedArticle.getId();
+    }
 
-    @PutMapping("/{id}/update")
-    public String update(@PathVariable Long id, ArticleDTO articleDTO, Model model) {
-        Article article = articleRepository.save(articleDTO.toEntity());
-        System.out.println("id="+id+"savedArticle.getId()="+article.getId());
+    @PostMapping("/{id}/update")
+    public String update(@PathVariable Long id, ArticleDTO articleDto, Model model) {
+        Article article = articleRepository.save(articleDto.toEntity());
         model.addAttribute("article", article);
         return String.format("redirect:/articles/%d", article.getId());
     }
