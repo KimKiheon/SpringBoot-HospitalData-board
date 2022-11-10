@@ -8,22 +8,19 @@ import lombok.ToString;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "article2")
+@Table(name = "article")
 @NoArgsConstructor
-@AllArgsConstructor
 @Getter
-@ToString
+@AllArgsConstructor
 public class Article {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @Column
     private String title;
-    @Column
     private String content;
 
-    public Article(String title, String content) {
+    public Article(String title, String contents) {
         this.title = title;
-        this.content = content;
+        this.content = contents;
     }
 }
