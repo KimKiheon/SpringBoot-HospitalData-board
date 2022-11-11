@@ -17,5 +17,5 @@ public class Hospital {
     @Id
     private Integer id;
     private String hospitalName;
-    private String fullAddress;
+    private String roadNameAddress;
 }

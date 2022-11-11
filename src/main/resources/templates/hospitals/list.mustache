@@ -1,18 +1,22 @@
-<table class="table">
-    <thead class="thead-light">
+<table class="table table-hover">
+    <thead>
     <tr>
-        <th scope="col">ID</th>
-        <th scope="col">병원</th>
-        <th scope="col">주소</th>
+        <th scope="col">Id</th>
+        <th scope="col">Title</th>
+        <th scope="col">Content</th>
     </tr>
     </thead>
-    <tbody class="table-group-divider">
+    <tbody>
     {{#hospitals}}
         <tr>
-            <th>{{id}}</th>
-            <td><a href="/articles/{{id}}"{{id}}">{{hospitalName}}</a></td>
-            <td>{{fullAddress}}</td>
+            <th scope="row">{{id}}</th>
+            <td>{{hospitalName}}</td>
+            <td>{{roadNameAddress}}</td>
         </tr>
     {{/hospitals}}
     </tbody>
 </table>
+<ul class="pagination justify-content-center">
+    <li class="page-item"><a class="page-link" href="?page={{previous}}">Previous</li>
+    <li class="page-item"><a class="page-link" href="?page={{next}}">Next</li>
+</ul>
