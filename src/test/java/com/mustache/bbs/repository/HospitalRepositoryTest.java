@@ -32,28 +32,51 @@ public class HospitalRepositoryTest {
     @Test
     void containing() {
         List<Hospital> hospitals = hospitalRepository.findByRoadNameAddressContaining("송파구");
-        printHospitalNameAndAddress(hospitals);
+        for(Hospital hospital : hospitals){
+            printHospitalName(hospital);
+            printHospitalGetRoadNameAddress(hospital);
+            System.out.println();
+        }
     }
     @Test
     void startsWith() {
         List<Hospital> hospitals = hospitalRepository.findByHospitalNameStartsWith("경희");// 가톨릭 서울 연세 경희
-        printHospitalNameAndAddress(hospitals);
+        for(Hospital hospital : hospitals){
+            printHospitalName(hospital);
+            System.out.println();
+        }
     }
     @Test
     void endsWith() {
         List<Hospital> hospitals = hospitalRepository.findByHospitalNameEndingWith("병원");// 의원, 병원, 이비인후과, 치과
-        printHospitalNameAndAddress(hospitals);
+        for(Hospital hospital : hospitals){
+            printHospitalName(hospital);
+            System.out.println();
+        }
     }
     @Test
     void bedCount(){
         List<Hospital> hospitals=hospitalRepository.findByHealthcareProviderCountBetween(10,20);
-        printHospitalNameAndAddress(hospitals);
-
+        for(Hospital hospital : hospitals){
+            printHospitalName(hospital);
+            printHospitalGetRoadNameAddress(hospital);
+            printHospitalHealthcareProviderCount(hospital);
+            System.out.println();
+        }
     }
-    void printHospitalNameAndAddress(List<Hospital> hospitals) {
+    void printHospital(List<Hospital> hospitals) {
         for (Hospital hospital : hospitals) {
             System.out.printf("%s | %s %f %d\n", hospital.getHospitalName(), hospital.getRoadNameAddress(), hospital.getTotalAreaSize(),hospital.getHealthcareProviderCount());
         }
         System.out.println(hospitals.size());
+    }
+    void printHospitalName(Hospital hospital){
+        System.out.printf(hospital.getHospitalName()+" | ");
+    }
+    void printHospitalGetRoadNameAddress(Hospital hospital){
+        System.out.printf(hospital.getRoadNameAddress()+" ");
+    }
+    void printHospitalHealthcareProviderCount(Hospital hospital){
+        System.out.printf(hospital.getHealthcareProviderCount()+" ");
     }
 }
