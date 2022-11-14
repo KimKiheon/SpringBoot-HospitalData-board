@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
@@ -16,6 +17,33 @@ import javax.persistence.Table;
 public class Hospital {
     @Id
     private Integer id;
-    private String hospitalName;
+    @Column(name = "management_number")
+    private String managementNumber;
+
+    @Column(name = "business_status")
+    private int businessStatus;
+
+    @Column(name = "phone")
+    private String phone;
+
+    @Column(name = "road_name_address")
     private String roadNameAddress;
+
+    @Column(name = "hospital_name")
+    private String hospitalName;
+
+    @Column(name = "business_type_name")
+    private String businessTypeName;
+
+    @Column(name = "healthcare_provider_count")
+    private int healthcareProviderCount;
+
+    @Column(name = "patient_room_count")
+    private int patientRoomCount;
+
+    @Column(name = "total_number_of_beds")
+    private int totalNumberOfBeds;
+
+    @Column(name = "total_area_size")
+    private float totalAreaSize;
 }
