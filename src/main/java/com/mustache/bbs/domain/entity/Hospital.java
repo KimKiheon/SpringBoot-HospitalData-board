@@ -4,6 +4,7 @@ import com.mustache.bbs.domain.dto.HospitalResponse;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -15,6 +16,7 @@ import javax.persistence.Table;
 @NoArgsConstructor
 @AllArgsConstructor
 @Getter
+@Setter
 public class Hospital {
     @Id
     private Integer id;
@@ -47,6 +49,8 @@ public class Hospital {
 
     @Column(name = "total_area_size")
     private float totalAreaSize;
+    private int businessStatusCode;
+
 
     public static HospitalResponse of(Hospital hospital) {
         return new HospitalResponse(hospital.getId(), hospital.getRoadNameAddress(), hospital.getHospitalName(),

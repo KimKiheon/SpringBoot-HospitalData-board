@@ -17,7 +17,7 @@ public class HospitalDTO {
     private int openLocalGovernmentCode;
     private String managementNumber;
     private LocalDateTime licenseDate;
-    private int businessStatus;;
+    private int businessStatus;
     private int businessStatusCode;
     private String phone;
     private String fullAddress;
