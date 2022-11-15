@@ -1,14 +1,14 @@
 package com.mustache.bbs.domain.dto;
 
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-
-import javax.persistence.criteria.CriteriaBuilder;
 
 @Getter
 @NoArgsConstructor
 @AllArgsConstructor
+@Builder
 public class HospitalResponse {
     private Integer id;
     private String roadNameAddress;

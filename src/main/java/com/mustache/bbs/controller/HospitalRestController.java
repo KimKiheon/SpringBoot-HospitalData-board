@@ -15,15 +15,14 @@ import java.util.Optional;
 @RequestMapping("/api/v1/hospitals")
 public class HospitalRestController {
     private final HospitalRepository hospitalRepository;
-    public HospitalRestController(HospitalRepository hospitalRepository){
-        this.hospitalRepository=hospitalRepository;
+    public HospitalRestController(HospitalRepository hospitalRepository) {
+        this.hospitalRepository = hospitalRepository;
     }
-
     @GetMapping("/{id}")
-    public ResponseEntity<HospitalResponse> get(@PathVariable Integer id) { // ResponseEntity도 DTO타입
-        Optional<Hospital> hospital = hospitalRepository.findById(id); // Entity
-        HospitalResponse hospitalResponse = Hospital.of(hospital.get()); // DTO
-        return ResponseEntity.ok().body(hospitalResponse); // Return은 DTO로
+    public ResponseEntity<HospitalResponse> get(@PathVariable Integer id) {
+        Optional<Hospital> optHospital = hospitalRepository.findById(id);
+        HospitalResponse hospitalResponse = Hospital.of(optHospital.get());
+        return ResponseEntity.ok().body(hospitalResponse);
     }
 }
 
