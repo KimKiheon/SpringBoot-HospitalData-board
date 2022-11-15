@@ -60,7 +60,7 @@ public class HospitalRepositoryTest {
     }
     @Test
     void findByPatientRoomCount(){
-        List<Hospital> hospitals=hospitalRepository.findByPatientRoomCount(10,20);
+        List<Hospital> hospitals=hospitalRepository.findByPatientRoomCountGreaterThanAndPatientRoomCountLessThan(5,10);
         for(Hospital hospital : hospitals){
             printHospitalName(hospital);
             printHospitalGetRoadNameAddress(hospital);
@@ -81,6 +81,6 @@ public class HospitalRepositoryTest {
         System.out.printf(hospital.getRoadNameAddress()+" ");
     }
     void printHospitalPatientRoomCount(Hospital hospital){
-        System.out.printf(hospital.getHealthcareProviderCount()+" ");
+        System.out.printf(hospital.getPatientRoomCount()+" ");
     }
 }
