@@ -48,9 +48,9 @@ public class Hospital {
     @Column(name = "total_area_size")
     private float totalAreaSize;
 
-    public static HospitalResponse of(Hospital hospital){
-        return new HospitalResponse(hospital.getId(),hospital.getHospitalName(),hospital.getRoadNameAddress(),
-                hospital.getPatientRoomCount(),hospital.getTotalNumberOfBeds(),hospital.getBusinessTypeName(),
+    public static HospitalResponse of(Hospital hospital) {
+        return new HospitalResponse(hospital.getId(), hospital.getRoadNameAddress(), hospital.getHospitalName(),
+                hospital.getPatientRoomCount(), hospital.getTotalNumberOfBeds(), hospital.getBusinessTypeName(),
                 hospital.getTotalAreaSize());
     }
 }
