@@ -1,5 +1,6 @@
 package com.mustache.bbs.domain.entity;
 
+import com.mustache.bbs.domain.dto.HospitalResponse;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -46,4 +47,10 @@ public class Hospital {
 
     @Column(name = "total_area_size")
     private float totalAreaSize;
+
+    public static HospitalResponse of(Hospital hospital){
+        return new HospitalResponse(hospital.getId(),hospital.getHospitalName(),hospital.getRoadNameAddress(),
+                hospital.getPatientRoomCount(),hospital.getTotalNumberOfBeds(),hospital.getBusinessTypeName(),
+                hospital.getTotalAreaSize());
+    }
 }

@@ -1,21 +1,25 @@
 package com.mustache.bbs.repository;
 
+import com.mustache.bbs.domain.dto.HospitalResponse;
 import com.mustache.bbs.domain.entity.Hospital;
 import com.mustache.bbs.domain.repository.HospitalRepository;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.PathVariable;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @SpringBootTest
 public class HospitalRepositoryTest {
     @Autowired
     HospitalRepository hospitalRepository;
     @Test
-    @DisplayName("BusinessTypenName이 보건소, 보건지소, 보건진료소인 데이터가 잘 나오는가?")
+    @DisplayName("BusinessTypenName이 보건소, 보건지소, 보건진료소인 데이터")
     void findByBusinessTypeNameIn(){
         List<String> inClues = new ArrayList<>();
         inClues.add("보건소");
@@ -55,12 +59,12 @@ public class HospitalRepositoryTest {
         }
     }
     @Test
-    void bedCount(){
-        List<Hospital> hospitals=hospitalRepository.findByHealthcareProviderCountBetween(10,20);
+    void findByPatientRoomCount(){
+        List<Hospital> hospitals=hospitalRepository.findByPatientRoomCount(10,20);
         for(Hospital hospital : hospitals){
             printHospitalName(hospital);
             printHospitalGetRoadNameAddress(hospital);
-            printHospitalHealthcareProviderCount(hospital);
+            printHospitalPatientRoomCount(hospital);
             System.out.println();
         }
     }
@@ -76,7 +80,7 @@ public class HospitalRepositoryTest {
     void printHospitalGetRoadNameAddress(Hospital hospital){
         System.out.printf(hospital.getRoadNameAddress()+" ");
     }
-    void printHospitalHealthcareProviderCount(Hospital hospital){
+    void printHospitalPatientRoomCount(Hospital hospital){
         System.out.printf(hospital.getHealthcareProviderCount()+" ");
     }
 }
