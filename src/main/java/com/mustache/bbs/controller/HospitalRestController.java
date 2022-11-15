@@ -20,9 +20,12 @@ public class HospitalRestController {
     }
     @GetMapping("/{id}")
     public ResponseEntity<HospitalResponse> get(@PathVariable Integer id) {
-        Optional<Hospital> optHospital = hospitalRepository.findById(id);
-        HospitalResponse hospitalResponse = Hospital.of(optHospital.get());
-        return ResponseEntity.ok().body(hospitalResponse);
+        Optional<Hospital> hospital = hospitalRepository.findById(id);    // Entity
+        if (hospital.isPresent()) {
+            HospitalResponse hospitalResponse = Hospital.of(hospital.get());
+            return ResponseEntity.ok().body(hospitalResponse);
+        }
+        return null;
     }
 }
 
