@@ -1,5 +1,6 @@
 package com.mustache.bbs.domain.entity;
 
+import com.mustache.bbs.domain.dto.ArticleResponse;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -22,5 +23,8 @@ public class Article {
     public Article(String title, String contents) {
         this.title = title;
         this.content = contents;
+    }
+    public static ArticleResponse of(Article article){
+        return new ArticleResponse(article.getId(), article.getTitle(), article.getContent());
     }
 }
